@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#da9o#r6e%+i8t%bo2+4b@wogitbfa&@emg1d90_1rrf9#n5us'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -165,5 +165,5 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'username',
     'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=20),
-    'SIGNING_KEY': 'ciaone',
+    'SIGNING_KEY': SECRET_KEY,
 }
