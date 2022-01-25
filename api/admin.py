@@ -1,4 +1,10 @@
 from django.contrib import admin
-from api.models import Log
+from api.models import Log, Project
 
-admin.site.register(Log)
+
+class ModelAdmin(admin.ModelAdmin):
+    exclude = ['id']
+
+
+admin.site.register(Log, ModelAdmin)
+admin.site.register(Project)

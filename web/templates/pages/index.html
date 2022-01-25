@@ -3,5 +3,11 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-  Home
+
+  Home {{user}}
+
+  {% for log in logs %}
+    {{log}}
+  {% endfor %}
+
 {% endblock content %}
