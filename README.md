@@ -4,21 +4,21 @@
 
 1. Is it recommended to create a virtual environment
 
-```
-$ python -m venv .venv
-```
+    ```
+    $ python -m venv .venv
+    ```
 
 2. Enter the virtual environment
 
-```
-$ source .venv/bin/activate
-```
+    ```
+    $ source .venv/bin/activate
+    ```
 
 3. Install dependencies
 
-```
-$ pip install -r requirements.txt
-```
+    ```
+    $ pip install -r requirements.txt
+    ```
 
 4. Set env variables
 
@@ -59,12 +59,12 @@ $ pip install -r requirements.txt
 
 5. Run server
 
-```
-$ python manage.py runserver
-```
+    ```
+    $ python manage.py runserver
+    ```
 
 6. (Optional) Create a superuser in order to use the django admin site
 
-```
-$ python manage.py createsuperuser
-```
+    ```
+    $ python manage.py createsuperuser
+    ```
