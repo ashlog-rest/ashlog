@@ -3,7 +3,39 @@
 {% block title %}{{project}}{% endblock title %}
 
 {% block content %}
-  {% for log in logs %}
-    {{log}}
-  {% endfor %}
+
+  <ul id="log-list">
+    {% for log in logs %}
+      <li>{{log}} {{log.created}}</li>
+    {% endfor %}
+  </ul>
+
+  <div id="logs">
+    {{text}}
+  </div>
+
+  <script>
+    const projectID = {{project.id}};
+    const logList = document.getElementById('log-list');
+
+    const logSocket = new WebSocket(
+      'ws://localhost:8000'
+      + '/ws/project/'
+      + projectID
+      + '/'
+    );
+
+    logSocket.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      logList.innerHTML += `
+        <li>${data.log.event} ${data.log.created}</li>
+      `;
+    };
+
+    logSocket.onclose = function(event) {
+      console.error('Chat socket closed unexpectedly');
+    };
+
+  </script>
+
 {% endblock content %}
