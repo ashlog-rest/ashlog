@@ -16,8 +16,8 @@ class Project(RandomIDModel):
 class Log(RandomIDModel):
     """ Model for Logs """
     event = EncryptedCharField(max_length=900, blank=False)
-    created = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=False)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.event

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}{{project}}{% endblock title %}
+
+{% block content %}
+  {% for log in logs %}
+    {{log}}
+  {% endfor %}
+{% endblock content %}

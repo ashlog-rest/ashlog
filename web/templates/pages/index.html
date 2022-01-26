@@ -6,8 +6,10 @@
 
   Home {{user}}
 
-  {% for log in logs %}
-    {{log}}
+  <ul>
+  {% for project in projects %}
+    <li><a href="/project/{{project.id}}/">{{project}}</a></li>
   {% endfor %}
+  </ul>
 
 {% endblock content %}
