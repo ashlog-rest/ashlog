@@ -32,7 +32,7 @@ $ pip install -r requirements.txt
 
   ```
   DJANGO_SECRET_KEY='your secret key'
-  FIELD_ENCRYPTION_KEY='your ecription key'
+  FIELD_ENCRYPTION_KEY='your encription key'
   ```
 
   That's how you can generate Django secret keys:
