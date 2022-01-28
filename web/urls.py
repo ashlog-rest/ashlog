@@ -5,6 +5,7 @@ from web.views import (
     login_view,
     logout_view,
     new_project_view,
+    register_view,
     search_project_view,
 )
 
@@ -15,5 +16,6 @@ urlpatterns = [
     path('login/', login_view),
     path('logout/', logout_view),
     path('new/', new_project_view),
+    path('register/', register_view),
     path('search/', search_project_view),
 ]

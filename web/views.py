@@ -2,9 +2,10 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.core.serializers import serialize
+from authentication.models import User
 from api.models import Log, Project
 from api.serializers import LogSerializer
-from web.forms import LoginForm
+from web.forms import LoginForm, RegisterForm
 
 
 def index_view(request):
@@ -45,17 +46,16 @@ def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             remember_me = form.cleaned_data.get('remember_me')
-            user = authenticate(email=email, password=password)
+            user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 if not remember_me:
                     request.session.set_expiry(0)
                 return redirect('/')
-    form = LoginForm()
-    return render(request, 'pages/login.html', {'login_form': form})
+    return render(request, 'pages/login.html')
 
 
 def logout_view(request):
@@ -77,6 +77,26 @@ def new_project_view(request):
         project.save()
         return redirect(f'/project/{project.id}')
     return redirect('/')
+
+
+def register_view(request):
+    """ View for user registration """
+    if request.user.is_authenticated:
+        return redirect('/')
+    if request.method == 'POST':
+        form = RegisterForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            email = form.cleaned_data.get('email')
+            user = User.objects.create_user(
+                username=username, password=password, email=email)
+            print(user)
+            user.save()
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+    return render(request, 'pages/register.html')
 
 
 def search_project_view(request):

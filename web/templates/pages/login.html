@@ -15,48 +15,55 @@
   </head>
   
   <body>
-    <main class="form-signin text-center">
+    <main class="form text-center">
       <form method="POST">
         <h1 class="h3 mb-3 fw-bold">Sign in</h1>
 
         {% csrf_token %}
 
-        <div class="form-floating">
-          <input
-            type="email"
-            name="username"
-            class="form-control"
-            id="floatingInput"
-            placeholder="name@example.com"
-          >
-          <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="password"
-            name="password"
-            class="form-control"
-            id="floatingPassword"
-            placeholder="Password"
-          >
-          <label for="floatingPassword">Password</label>
-        </div>
+        <div class="card">
+          <div class="card-body">
 
-        <div class="row row-cols-2">
-          <div class="checkbox mb-3">
-            <label>
+            <div class="mb-3">
+              <label for="inputUsername" class="form-label float-start">Username</label>
               <input
-                type="checkbox"
-                name="remeber_me"
-                value="remember-me"
-              > Remember me
-            </label>
+                type="text"
+                name="username"
+                class="form-control"
+                id="inputUsername"
+                placeholder="Enter your username"
+              >
+            </div>
+
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label float-start">Password</label>
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="inputPassword"
+                placeholder="Choose a password"
+              >
+            </div>
+
+            <div class="row row-cols-2">
+              <div class="checkbox mb-3">
+              <label>
+                <input
+                  type="checkbox"
+                  name="remeber_me"
+                  value="remember-me"
+                > Remember me
+              </label>
+            </div>
+
+              <a href="/register">Need an account?</a>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+
           </div>
-
-          <a href="/register">Need an account?</a>
         </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2022 AshLog</p>
       </form>
     </main>

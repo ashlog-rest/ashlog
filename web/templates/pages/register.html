@@ -1,0 +1,73 @@
+{% load bootstrap5 %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>AshLog - Register</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}"/>
+
+  </head>
+
+  <body>
+    <main class="form text-center">
+      <form method="POST">
+        <h1 class="h3 mb-3 fw-bold">Sign Up</h1>
+
+        {% csrf_token %}
+
+        <div class="card">
+          <div class="card-body">
+        
+              <div class="mb-3">
+                <label for="inputUsername" class="form-label float-start">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  id="inputUsername"
+                  placeholder="Choose a username"
+                >
+              </div>
+
+              <div class="mb-3">
+                <label for="inputEmail" class="form-label float-start">Email address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Enter your email address"
+                >
+              </div>
+
+              <div class="mb-3">
+                <label for="inputPassword" class="form-label float-start">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="Choose a password"
+                >
+              </div>
+
+            <div class="mb-3">
+              <a href="/login">Already have an account?</a>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+
+          </div>
+        </div>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022 AshLog</p>
+      </form>
+    </main>
+  </body>
+
+</html>
