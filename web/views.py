@@ -8,6 +8,7 @@ from web.forms import LoginForm
 
 
 def index_view(request):
+    """ View for homepage """
     if not request.user.is_authenticated:
         return redirect('/login/')
     context = {
@@ -20,6 +21,7 @@ def index_view(request):
 
 
 def project_view(request, project_id, page_number=1):
+    """ View for project """
     if not request.user.is_authenticated:
         return redirect('/login/')
     logs = Log.objects.filter(
@@ -37,6 +39,7 @@ def project_view(request, project_id, page_number=1):
 
 
 def login_view(request):
+    """ View for login page """
     if request.user.is_authenticated:
         return redirect('/')
     if request.method == 'POST':
@@ -56,11 +59,13 @@ def login_view(request):
 
 
 def logout_view(request):
+    """ View for logout """
     logout(request)
     return redirect('/')
 
 
 def new_project_view(request):
+    """ Handle creation of a new project """
     if not request.user.is_authenticated:
         return redirect('/login/')
     if request.method == 'POST':
@@ -75,6 +80,7 @@ def new_project_view(request):
 
 
 def search_project_view(request):
+    """ View for searching projects """
     if not request.user.is_authenticated:
         return redirect('/login/')
     project_name = request.GET.get('q')
