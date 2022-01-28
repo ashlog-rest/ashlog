@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -35,6 +36,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +48,8 @@ INSTALLED_APPS = [
     'encrypted_model_fields',
     'channels',
     'rest_framework',
+    'bootstrap5',
+    'fontawesome_free',
     'authentication',
     'api',
     'web',
@@ -142,6 +147,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_DIRS = [
+    BASE_DIR / 'static',
+]
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -153,9 +163,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 FIELD_ENCRYPTION_KEY = os.getenv('FIELD_ENCRYPTION_KEY')
 
 
-# Django Tailwind
+# Django Random ID Model
 
-TAILWIND_APP_NAME = 'theme'
+ID_DIGITS_LENGTH = 6
 
 
 # Django REST Framework

@@ -2,22 +2,22 @@
 
 {% load project_card %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}Search{% endblock title %}
 
 {% block content %}
 
   <div class="container">
 
-    <h1>Hello {{user}}!</h1>
+    <h1>Search</h1>
 
-    <p>This is the list of all your projects.</p>
+    <p>The reasearch produced the following results:</p>
 
     {% for project in projects %}
 
       {% project_card project %}
 
     {% endfor %}
-
+  
   </div>
 
 {% endblock content %}

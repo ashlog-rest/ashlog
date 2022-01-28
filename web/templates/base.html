@@ -1,12 +1,30 @@
+{% load bootstrap5 %}
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 
   <head>
+
     <title>AshLog - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome_free/css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+
   </head>
   
-  <body>
+    {% include 'components/nav.html' %}
+
     {% block content %}{% endblock content %}
+
+    {% include 'components/footer.html' %}
+
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+
+    {% include 'components/modals/new_project.html' %}
+
   </body>
 
 </html>
