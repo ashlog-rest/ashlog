@@ -1,5 +1,9 @@
 # AshLog
 
+Open Source API and web app to handle logs with ease.
+
+<a href="https://liberapay.com/AshLog/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+
 ## Developer Instructions
 
 1. Is it recommended to create a virtual environment
