@@ -4,75 +4,75 @@
 
 {% block content %}
 
-    <div class="container">
-      <div class="row">
-        <div class="col-3">
-          
-          <div class="card mt-3">
-            <div class="card-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        
+        <div class="card mt-3">
+          <div class="card-body">
 
-              <h3 class="card-title text-center">{{project}}</h3>
+            <h3 class="card-title text-center">{{project}}</h3>
 
-              <nav class="mt-4">
-                <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-information-tab" data-bs-toggle="tab" data-bs-target="#nav-information" type="button" role="tab" aria-controls="nav-information" aria-selected="true">Information</button>
-                  <button class="nav-link" id="nav-members-tab" data-bs-toggle="tab" data-bs-target="#nav-members" type="button" role="tab" aria-controls="nav-members" aria-selected="false">Members</button>
-                </div>
-              </nav>
-              <div class="tab-content mt-3" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">
-                  
-                  <div class="mb-3">
-                    <label for="project-name" class="form-label">Project Name</label>
-                    <input
-                      readonly
-                      value="{{project.name}}"
-                      type="text"
-                      class="form-control"
-                      id="project-name"
-                    >
-                  </div>
-                  
-                  <div class="mb-3">
-                    <label for="project-id" class="form-label">Project Identifier</label>
-                    <input
-                      readonly
-                      value="{{project.id}}"
-                      type="text"
-                      class="form-control"
-                      id="project-id"
-                    >
-                  </div>
-
+            <nav class="mt-4">
+              <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-information-tab" data-bs-toggle="tab" data-bs-target="#nav-information" type="button" role="tab" aria-controls="nav-information" aria-selected="true">Information</button>
+                <button class="nav-link" id="nav-members-tab" data-bs-toggle="tab" data-bs-target="#nav-members" type="button" role="tab" aria-controls="nav-members" aria-selected="false">Members</button>
+              </div>
+            </nav>
+            <div class="tab-content mt-3" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">
+                
+                <div class="mb-3">
+                  <label for="project-name" class="form-label">Project Name</label>
+                  <input
+                    readonly
+                    value="{{project.name}}"
+                    type="text"
+                    class="form-control"
+                    id="project-name"
+                  >
                 </div>
                 
-                <div class="tab-pane fade" id="nav-members" role="tabpanel" aria-labelledby="nav-profile-tab">
-                  
-                  <ul class="list-group">
-
-                    {% for user in project.users.all %}
-                      <li class="list-group-item">{{user.username}}</li>
-                    {% endfor %}
-
-                  </ul>
-
+                <div class="mb-3">
+                  <label for="project-id" class="form-label">Project Identifier</label>
+                  <input
+                    readonly
+                    value="{{project.id}}"
+                    type="text"
+                    class="form-control"
+                    id="project-id"
+                  >
                 </div>
-              
+
               </div>
+              
+              <div class="tab-pane fade" id="nav-members" role="tabpanel" aria-labelledby="nav-profile-tab">
+                
+                <ul class="list-group">
 
+                  {% for user in project.users.all %}
+                    <li class="list-group-item">{{user.username}}</li>
+                  {% endfor %}
 
+                </ul>
+
+              </div>
+            
             </div>
-          </div>
 
-        </div>
-        <div class="col">
 
-          <div id="log-list">
           </div>
-        
         </div>
+
+      </div>
+      <div class="col">
+
+        <div id="log-list">
+        </div>
+      
       </div>
     </div>
+  </div>
   
   <script type="text/javascript">
     const logs = JSON.parse('{{logs|safe}}').reverse();
