@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from api.models import Log, Project
 from api.serializers import LogSerializer, ProjectSerializer
+from common.util import send_telegram
 
 
 class LogView(APIView):
@@ -36,6 +37,16 @@ class LogView(APIView):
         if not project:
             return Response(status=status.HTTP_403_FORBIDDEN)
         if serializer.is_valid():
+            actions = request.data.get('actions')
+            if actions:
+                for a in actions:
+                    action = a['action']
+                    args = a['args']
+                    if action == 'send_telegram':
+                        send_telegram(
+                            chat_id=args['chat_id'],
+                            message=request.data.get('event'),
+                        )
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
