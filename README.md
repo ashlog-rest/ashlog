@@ -82,6 +82,23 @@ requests.post(
 
 In this case you should set a TELEGRAM_TOKEN environment variable with your Telegram bot token. 
 
+## Installation
+
+The easiest way to run AshLog is using a Docker container.
+
+1. Clone this repository
+
+    ```
+    $ git clone https://github.com/ashlog-rest/ashlog
+    ```
+2. Make sure you have docker installed and run:
+
+    ```
+    $ docker-compose up --build  
+    ```
+
+That's it! Now you should be able to access the REST API and the webapp on http://localhost:8000/
+
 ## Developer Instructions
 
 1. Is it recommended to create a virtual environment
