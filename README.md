@@ -91,13 +91,16 @@ The easiest way to run AshLog is using a Docker container.
     ```
     $ git clone https://github.com/ashlog-rest/ashlog
     ```
-2. Make sure you have docker installed and run:
+
+2. Create `.env` file and set the requirred environment variables as stated in the <a href="https://github.com/ashlog-rest/ashlog#developer-instructions">Developer Instructions</a>.
+
+3. Make sure you have docker installed and run:
 
     ```
     $ docker-compose up --build  
     ```
 
-That's it! Now you should be able to access the REST API and the webapp on http://localhost:8000/
+That's it! Now you should be able to access the REST API and the webapp on http://localhost:8000/.
 
 ## Developer Instructions
 
