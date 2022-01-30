@@ -80,7 +80,7 @@ requests.post(
 )
 ```
 
-In this case you should set a TELEGRAM_TOKEN environment variable with your Telegram bot token. 
+In this case you should set the Telegram Token in your profile.
 
 ## Installation
 

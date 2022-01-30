@@ -46,6 +46,7 @@ class LogView(APIView):
                         send_telegram(
                             chat_id=args['chat_id'],
                             message=request.data.get('event'),
+                            token=request.user.telegram_token,
                         )
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
