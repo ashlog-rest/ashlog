@@ -10,7 +10,7 @@ def project_card(project):
     card = f'''
         <div class="card mt-3">
             <div class="card-body">
-            <a href="/project/{project.id}/">{project}#{project.id}</a>
+                <a href="/project/{project.id}/">{project}#{project.id}</a>
             </div>
         </div>
     '''

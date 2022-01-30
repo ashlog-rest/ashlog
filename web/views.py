@@ -9,6 +9,32 @@ from api.serializers import LogSerializer
 from web.forms import LoginForm, RegisterForm
 
 
+def delete_log_view(request, log_id=None):
+    """ Delete log object """
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+    if request.method == 'POST':
+        if not log_id is None:
+            log = Log.objects.get(id=log_id)
+            project = log.project
+            if request.user in project.users.all():
+                log.delete()
+                return redirect(f'/project/{project.id}')
+    return redirect('/')
+
+
+def delete_project_view(request, project_id=None):
+    """ Delete log object """
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+    if request.method == 'POST':
+        if not project_id is None:
+            project = Project.objects.get(id=project_id)
+            if request.user in project.users.all():
+                project.delete()
+    return redirect('/')
+
+
 def index_view(request):
     """ View for homepage """
     if not request.user.is_authenticated:
@@ -29,7 +55,7 @@ def project_view(request, project_id, page_number=1):
     logs = Log.objects.filter(
         project=project_id
     ).order_by('-created')
-    paginator = Paginator(logs, 18)
+    paginator = Paginator(logs, 15)
     if page_number < 1:
         page_number = 1
     elif page_number > paginator.num_pages:

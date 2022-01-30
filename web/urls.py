@@ -1,5 +1,7 @@
 from django.urls import path
 from web.views import (
+    delete_log_view,
+    delete_project_view,
     index_view,
     project_view,
     login_view,
@@ -11,6 +13,8 @@ from web.views import (
 
 urlpatterns = [
     path('', index_view),
+    path('delete/log/<int:log_id>/', delete_log_view),
+    path('delete/project/<int:project_id>/', delete_project_view),
     path('project/<project_id>/', project_view),
     path('project/<project_id>/<int:page_number>', project_view),
     path('login/', login_view),
