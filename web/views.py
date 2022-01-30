@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.core.serializers import serialize
+from django.core.paginator import Paginator
 from authentication.models import User
 from api.models import Log, Project
 from api.serializers import LogSerializer
@@ -27,14 +28,23 @@ def project_view(request, project_id, page_number=1):
         return redirect('/login/')
     logs = Log.objects.filter(
         project=project_id
-    )
+    ).order_by('-created')
+    paginator = Paginator(logs, 18)
+    if page_number < 1:
+        page_number = 1
+    elif page_number > paginator.num_pages:
+        page_number = paginator.num_pages
+    logs = paginator.get_page(page_number)
     context = {
         'logs': serialize('json', logs),
         'project': Project.objects.get(
             Q(users__in=[request.user]),
             id=project_id,
         ),
-        'page': page_number,
+        'page': {
+            'current': page_number,
+            'num_pages': paginator.num_pages,
+        },
     }
     return render(request, 'pages/project.html', context)
 
@@ -106,6 +116,7 @@ def search_project_view(request):
     if not project_name:
         project_name = ''
     projects = Project.objects.filter(
+        Q(users__in=[request.user]),
         name__contains=project_name,
     )
     context = {

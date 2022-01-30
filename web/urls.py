@@ -12,7 +12,7 @@ from web.views import (
 urlpatterns = [
     path('', index_view),
     path('project/<project_id>/', project_view),
-    path('project/<project_id>/<page_number>', project_view),
+    path('project/<project_id>/<int:page_number>', project_view),
     path('login/', login_view),
     path('logout/', logout_view),
     path('new/', new_project_view),
