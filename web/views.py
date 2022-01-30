@@ -24,7 +24,7 @@ def delete_log_view(request, log_id=None):
 
 
 def delete_project_view(request, project_id=None):
-    """ Delete log object """
+    """ Delete project object """
     if not request.user.is_authenticated:
         return redirect('/login/')
     if request.method == 'POST':
