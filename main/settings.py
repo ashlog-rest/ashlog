@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'encrypted_model_fields',
     'channels',
     'rest_framework',
@@ -63,6 +64,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000'
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -178,7 +184,7 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'USER_ID_FIELD': 'username',
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=20),
     'SIGNING_KEY': SECRET_KEY,
 }

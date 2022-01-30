@@ -3,7 +3,7 @@ from api.models import Log, Project
 
 
 class LogSerializer(ModelSerializer):
-    """ Serialize user object """
+    """ Serialize log object """
     class Meta:
         model = Log
         fields = ('event', 'created', 'project')

@@ -91,7 +91,6 @@ def register_view(request):
             email = form.cleaned_data.get('email')
             user = User.objects.create_user(
                 username=username, password=password, email=email)
-            print(user)
             user.save()
             if user is not None:
                 login(request, user)
