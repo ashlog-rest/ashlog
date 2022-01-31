@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import django
 import django_on_heroku
 import os
 from pathlib import Path
@@ -18,7 +17,6 @@ from datetime import timedelta
 from dotenv import load_dotenv
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
-django.setup()
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
