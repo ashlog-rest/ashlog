@@ -2,7 +2,6 @@ import requests
 
 
 def send_discord(channel_id, token, message):
-    botToken = 'OTMzNjc5MjExMjQyMjIxNjI4.YelChg.AcU1f4X2LX7s_pwHCF4Y5O7fTkE'
     baseURL = f'https://discordapp.com/api/channels/{channel_id}/messages'
     headers = {
         'Authorization': f'Bot {token}',
