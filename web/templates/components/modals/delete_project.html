@@ -5,14 +5,20 @@
 {% block modal_title %}Delete project{% endblock modal_title %}
 
 {% block modal_content %}
+
   <form method="POST" action="/project/{{project.id}}/delete/">
+
     {% csrf_token %}
+
     <div class="modal-body">
       <p>Are you sure you want to delete this project?</p>
     </div>
+    
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       <input type="submit" class="btn btn-danger" value="Continue">
     </div>
+
   </form>
+
 {% endblock modal_content %}

@@ -34,6 +34,21 @@ def delete_project_view(request, project_id=None):
     return redirect('/')
 
 
+def edit_project_view(request, project_id=None):
+    """ Edit project object """
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+    if project_id is not None:
+        project = Project.objects.get(id=project_id)
+        if request.method == 'POST':
+            name = request.POST.get('project-name')
+            project.name = name
+            project.save()
+        return redirect(f'/project/{project.id}')
+    else:
+        return redirect('/')
+
+
 def export_project_view(request, project_id=None):
     """ Export project logs """
     if not request.user.is_authenticated:

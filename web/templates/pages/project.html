@@ -7,6 +7,7 @@
 {% block card_menu %}
   <a href="/project/{{project.id}}/export/" class="text-dark text-decoration-none">Export Logs</a> |
   <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#membersProjectModal">Members</a> |
+  <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#renameProjectModal">Rename Project</a> |
   <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#deleteProjectModal">Delete Project</a> |
   <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#newProjectModal">New Project</a>
 {% endblock card_menu %}
@@ -44,9 +45,11 @@
     </div>
   </div>
 
+  {% include 'components/modals/delete_project.html' %}
+
   {% include 'components/modals/members_project.html' %}
 
-  {% include 'components/modals/delete_project.html' %}
+  {% include 'components/modals/rename_project.html' %}
 
   <script type="text/javascript">
     const projectID = {{project.id}};
