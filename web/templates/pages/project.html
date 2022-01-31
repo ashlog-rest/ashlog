@@ -84,7 +84,8 @@
     const newLogToast = document.getElementById('new-log-toast');
 
     const logSocket = new WebSocket(
-      'ws://localhost:8000'
+      (window.location.protocol === 'https:' ? 'wss' : 'ws') + '://'
+      + window.location.host
       + '/ws/project/'
       + projectID
       + '/'
