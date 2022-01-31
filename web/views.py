@@ -1,11 +1,10 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
-from django.core.serializers import serialize
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from authentication.models import User
 from api.models import Log, Project
-from api.serializers import LogSerializer
 from web.forms import LoginForm, RegisterForm
 
 
@@ -33,6 +32,25 @@ def delete_project_view(request, project_id=None):
             if request.user in project.users.all():
                 project.delete()
     return redirect('/')
+
+
+def export_project_view(request, project_id=None):
+    """ Export project logs """
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+    if project_id is not None:
+        project = Project.objects.get(id=project_id)
+        if request.user not in project.users.all():
+            return redirect('/')
+        logs = Log.objects.filter(project=project_id)
+        response = HttpResponse(content_type='text/plain')
+        response['Content-Disposition'] = f'attachment; filename="logs_project_{project_id}.txt"'
+        txt = ''
+        for log in logs:
+            txt += f'[{log.created}] {log.event}\n'
+        response.write(txt)
+
+        return response
 
 
 def index_view(request):
