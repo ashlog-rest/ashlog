@@ -34,6 +34,20 @@ def delete_project_view(request, project_id=None):
     return redirect('/')
 
 
+def edit_profile_view(request, username=None):
+    """ Edit user object """
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+    if username is not None and request.method == 'POST':
+        user = User.objects.get(username=username)
+        if user == request.user:
+            new_telegram_token = request.POST.get('telegram_token')
+            if new_telegram_token:
+                user.telegram_token = new_telegram_token
+            user.save()
+    return redirect('/')
+
+
 def edit_project_view(request, project_id=None):
     """ Edit project object """
     if not request.user.is_authenticated:

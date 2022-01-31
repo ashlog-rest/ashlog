@@ -1,0 +1,42 @@
+{% extends 'components/modals/base.html' %}
+
+{% block modal_id %}profileModal{% endblock modal_id %}
+
+{% block modal_title %}Profile{% endblock modal_title %}
+
+{% block modal_content %}
+
+    <form method="POST" action="/profile/{{user.username}}/edit/">
+
+    {% csrf_token %}
+
+    <div class="modal-body">
+      <label for="username" class="form-label">Username</label>
+      <input
+        readOnly="true"
+        type="text"
+        id="username"
+        value="{{user.username}}"
+        class="form-control"
+        placeholder="Choose a username..."
+      >
+
+      <label for="telegram_token" class="form-label mt-3">Telegram Token</label>
+      <input
+        type="text"
+        id="telegram_token"
+        name="telegram_token"
+        value="{{user.telegram_token}}"
+        class="form-control"
+        placeholder="Enter your Telegram token..."
+      >
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-primary" value="Edit Profile">
+    </div>
+
+  </form>
+
+{% endblock modal_content %}

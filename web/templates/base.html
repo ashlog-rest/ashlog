@@ -57,12 +57,15 @@
 
       <div class="float-end pt-3 pr-3">
         <a href="/" class="text-dark text-decoration-none">Home</a> |
+        <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#profileModal">Profile</a> |
         <a href="/logout/" class="text-dark text-decoration-none">Log out <span class="text-muted">({{user}})</span></a>
       </div>
 
       {% include 'components/footer.html' %}
 
     </div>
+
+    {% include 'components/modals/profile.html' %}
 
   </body>
 
