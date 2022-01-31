@@ -1,23 +1,38 @@
 {% extends 'base.html' %}
 
-{% load project_card %}
+{% load project_list %}
 
 {% block title %}Home{% endblock title %}
 
+{% block card_title %}Projects{% endblock card_title %}
+
+{% block card_menu %}
+  <a href="#" class="text-dark text-decoration-none" @click="open = !open">Search</a> |
+  <a href="#" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#newProjectModal">New Project</a>
+{% endblock card_menu %}
+
 {% block content %}
 
-  <div class="container">
+  <span x-show="open" x-transition>
+    <form method="GET">
+      <input
+        class="form-control mb-3"
+        type="text"
+        name="q"
+        value="{{query}}"
+        placeholder="Search..."
+      >
+    </form>
+  </span>
 
-    <h1>Hello {{user}}!</h1>
-
-    <p>This is the list of all your projects.</p>
+  <ul class="list-group">
 
     {% for project in projects %}
-
-      {% project_card project %}
-
+    
+      {% project_list project %}
+    
     {% endfor %}
 
-  </div>
+  </ul>
 
 {% endblock content %}

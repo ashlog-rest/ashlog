@@ -39,16 +39,40 @@ def index_view(request):
     """ View for homepage """
     if not request.user.is_authenticated:
         return redirect('/login/')
+    projects = Project.objects.filter(
+        Q(users__in=[request.user])
+    )
+    query = request.GET.get('q')
+    page_number = request.GET.get('p')
+    if query is not None and query != '':
+        projects = projects.filter(
+            name__contains=query)
+        is_search_open = 'true'
+    else:
+        is_search_open = 'false'
+    paginator = Paginator(projects, 15)
+    if page_number is not None:
+        page_number = int(page_number)
+        if page_number < 1:
+            page_number = 1
+        elif page_number > paginator.num_pages:
+            page_number = paginator.num_pages
+    else:
+        page_number = 1
     context = {
         'user': request.user,
-        'projects': Project.objects.filter(
-            Q(users__in=[request.user])
-        ),
+        'projects': projects,
+        'is_search_open': is_search_open,
+        'query': query or '',
+        'page': {
+            'current': page_number,
+            'num_pages': paginator.num_pages,
+        },
     }
     return render(request, 'pages/index.html', context)
 
 
-def project_view(request, project_id, page_number=1):
+def project_view(request, project_id):
     """ View for project """
     if not request.user.is_authenticated:
         return redirect('/login/')
@@ -56,13 +80,17 @@ def project_view(request, project_id, page_number=1):
         project=project_id
     ).order_by('-created')
     paginator = Paginator(logs, 15)
+    try:
+        page_number = int(request.GET.get('p'))
+    except:
+        page_number = 1
     if page_number < 1:
         page_number = 1
     elif page_number > paginator.num_pages:
         page_number = paginator.num_pages
     logs = paginator.get_page(page_number)
     context = {
-        'logs': serialize('json', logs),
+        'logs': logs,
         'project': Project.objects.get(
             Q(users__in=[request.user]),
             id=project_id,
@@ -132,21 +160,3 @@ def register_view(request):
                 login(request, user)
                 return redirect('/')
     return render(request, 'pages/register.html')
-
-
-def search_project_view(request):
-    """ View for searching projects """
-    if not request.user.is_authenticated:
-        return redirect('/login/')
-    project_name = request.GET.get('q')
-    if not project_name:
-        project_name = ''
-    projects = Project.objects.filter(
-        Q(users__in=[request.user]),
-        name__contains=project_name,
-    )
-    context = {
-        'projects': projects,
-        'query': project_name,
-    }
-    return render(request, 'pages/search.html', context)

@@ -1,0 +1,21 @@
+{% extends 'components/modals/base.html' %}
+
+{% block modal_id %}membersProjectModal{% endblock modal_id %}
+
+{% block modal_title %}Project members{% endblock modal_title %}
+
+{% block modal_content %}
+    <div class="modal-body">
+
+      <label for="projectMembers" class="form-label">Members</label>
+      <ul class="list-group" id="projectMembers">
+        {% for user in project.users.all %}
+          <li class="list-group-item">{{user.username}}</li>
+        {% endfor %}
+      </ul>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+{% endblock modal_content %}

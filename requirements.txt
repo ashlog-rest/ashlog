@@ -20,11 +20,12 @@ cryptography==36.0.1
 daphne==3.0.2
 Django==4.0.1
 django-bootstrap-v5==1.0.8
+django-cors-headers==3.11.0
 django-encrypted-model-fields==0.6.0
+django-heroicons==0.0.8
 django-random-id-model==0.1.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.0.0
-fontawesome-free==5.15.4
 hyperlink==21.0.0
 idna==3.3
 importlib-metadata==3.10.1

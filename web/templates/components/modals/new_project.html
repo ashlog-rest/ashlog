@@ -1,29 +1,25 @@
-<div class="modal modal-sheet fade" id="newProjectModal" tabindex="-1" aria-labelledby="newProjectModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content shadow">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newProjectModal">Create new project</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form method="POST" action="/new/">
-        
-        {% csrf_token %}
+{% extends 'components/modals/base.html' %}
 
-        <div class="modal-body">
-            <label for="projectName" class="form-label">Project name</label>
-            <input
-              type="text"
-              id="projectName"
-              name="project-name"
-              class="form-control"
-              placeholder="Choose a name for your new project..."
-            >
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <input type="submit" class="btn btn-primary" value="Create">
-        </div>
-      </form>
+{% block modal_id %}newProjectModal{% endblock modal_id %}
+
+{% block modal_title %}Create new project{% endblock modal_title %}
+
+{% block modal_content %}
+  <form method="POST" action="/new/">
+    {% csrf_token %}
+    <div class="modal-body">
+      <label for="projectName" class="form-label">Project name</label>
+      <input
+        type="text"
+        id="projectName"
+        name="project-name"
+        class="form-control"
+        placeholder="Choose a name for your new project..."
+      >
     </div>
-  </div>
-</div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <input type="submit" class="btn btn-primary" value="Create">
+    </div>
+  </form>
+{% endblock modal_content %}

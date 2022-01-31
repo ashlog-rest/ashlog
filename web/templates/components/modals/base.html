@@ -1,0 +1,11 @@
+<div class="modal modal-sheet fade" id="{% block modal_id %}{% endblock modal_id %}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newProjectModal">{% block modal_title %}{% endblock modal_title %}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      {% block modal_content %}{% endblock modal_content %}
+    </div>
+  </div>
+</div>
