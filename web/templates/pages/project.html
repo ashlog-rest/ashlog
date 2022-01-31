@@ -49,36 +49,6 @@
   {% include 'components/modals/delete_project.html' %}
 
   <script type="text/javascript">
-    const logs = JSON.parse('{{logs|safe}}').reverse();
-    
-    logs.forEach(({ fields: { event, created }, pk}) => {
-      renderLog(event, created, pk);
-    });
-
-    function renderLog(event, created, id) {
-      const logList = document.getElementById('log-list');
-      const options = {
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-      };
-      const date = new Date(created).toLocaleDateString('en-US', options);
-      const newLog = `
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              ${event}
-              <div class="d-flex">
-                <span class="text-end text-muted me-3">${date}</span>
-              </div>
-            </li>
-      `;
-      logList.innerHTML = newLog + logList.innerHTML;
-    }
-  </script>
-
-  <script type="text/javascript">
     const projectID = {{project.id}};
     const currentPage = {{page.current}};
     const newLogToast = document.getElementById('new-log-toast');
