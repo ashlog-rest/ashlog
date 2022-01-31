@@ -38,7 +38,10 @@ ALLOWED_HOSTS = []
 if HOST is not None:
 
     ALLOWED_HOSTS.append(HOST)
-    CSRF_TRUSTED_ORIGINS = [HOST]
+    CSRF_TRUSTED_ORIGINS = [
+        'http://' + HOST,
+        'https://' + HOST,
+    ]
 
 
 # Application definition
