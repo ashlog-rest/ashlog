@@ -23,12 +23,22 @@
 
       <label for="telegram_token" class="form-label mt-3">Telegram Token</label>
       <input
-        type="text"
+        type="password"
         id="telegram_token"
         name="telegram_token"
         value="{{user.telegram_token}}"
         class="form-control"
         placeholder="Enter your Telegram token..."
+      >
+
+      <label for="discord_token" class="form-label mt-3">Discord Token</label>
+      <input
+        type="password"
+        id="discord_token"
+        name="discord_token"
+        value="{{user.discord_token}}"
+        class="form-control"
+        placeholder="Enter your Discord token..."
       >
     </div>
 

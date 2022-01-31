@@ -12,6 +12,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         _('username'), max_length=30, unique=True, primary_key=True)
     telegram_token = EncryptedCharField(max_length=46, blank=True)
+    discord_token = EncryptedCharField(max_length=59, blank=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 

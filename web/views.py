@@ -42,8 +42,11 @@ def edit_profile_view(request, username=None):
         user = User.objects.get(username=username)
         if user == request.user:
             new_telegram_token = request.POST.get('telegram_token')
+            new_discord_token = request.POST.get('discord_token')
             if new_telegram_token:
                 user.telegram_token = new_telegram_token
+            if new_discord_token:
+                user.discord_token = new_discord_token
             user.save()
     return redirect('/')
 

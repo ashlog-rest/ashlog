@@ -7,6 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from api.models import Log, Project
 from api.serializers import LogSerializer, ProjectSerializer
 from common.util import (
+    send_discord,
     send_post_request,
     send_telegram,
 )
@@ -50,6 +51,12 @@ class LogView(APIView):
                             chat_id=args['chat_id'],
                             message=request.data.get('event'),
                             token=request.user.telegram_token,
+                        )
+                    elif action == 'send_discord':
+                        send_discord(
+                            channel_id=args['channel_id'],
+                            message=request.data.get('event'),
+                            token=request.user.discord_token,
                         )
                     elif action == 'send_post_request':
                         send_post_request(
