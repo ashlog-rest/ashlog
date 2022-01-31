@@ -8,11 +8,25 @@
     <div class="modal-body">
 
       <label for="projectMembers" class="form-label">Members</label>
+      
       <ul class="list-group" id="projectMembers">
         {% for user in project.users.all %}
           <li class="list-group-item">{{user.username}}</li>
         {% endfor %}
       </ul>
+
+      <label for="projectMembersAdd" class="form-label mt-3">Add Member</label>
+
+      <form method="POST" action="/project/{{project.id}}/edit/" id="projectMembersAdd">
+
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+          <input type="text" name="project-member-username" class="form-control" placeholder="Member's username" aria-label="Member's username" aria-describedby="btn-submit">
+          <button class="btn btn-outline-primary" type="submit" id="btn-submit">Add</button>
+        </div>
+
+      </form>
 
     </div>
     <div class="modal-footer">

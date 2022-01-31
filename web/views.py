@@ -42,7 +42,13 @@ def edit_project_view(request, project_id=None):
         project = Project.objects.get(id=project_id)
         if request.method == 'POST':
             name = request.POST.get('project-name')
-            project.name = name
+            member_username = request.POST.get('project-member-username')
+            if name:
+                project.name = name
+            if member_username:
+                user = User.objects.get(username=member_username)
+                if user:
+                    project.users.add(user)
             project.save()
         return redirect(f'/project/{project.id}')
     else:
