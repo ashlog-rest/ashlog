@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-import sys
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
@@ -36,8 +35,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-sys.modules['fontawesome_free'] = __import__('fontawesome-free')
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,7 +47,6 @@ INSTALLED_APPS = [
     'channels',
     'rest_framework',
     'bootstrap5',
-    'fontawesome_free',
     'authentication',
     'api',
     'web',
