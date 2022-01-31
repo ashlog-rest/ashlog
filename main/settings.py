@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import django_heroku
 import os
 from pathlib import Path
 from datetime import timedelta
@@ -188,3 +189,6 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=20),
     'SIGNING_KEY': SECRET_KEY,
 }
+
+
+django_heroku.settings(locals())
