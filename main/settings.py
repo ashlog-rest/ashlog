@@ -32,6 +32,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS.append(os.getenv('HOST'))
+
 
 # Application definition
 
