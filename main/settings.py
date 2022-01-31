@@ -16,7 +16,6 @@ from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
