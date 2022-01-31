@@ -30,6 +30,10 @@
     {% for project in projects %}
     
       {% project_list project %}
+
+      {% empty %}
+
+      <p class="text-center mt-4">No project has been found.</p>
     
     {% endfor %}
 
