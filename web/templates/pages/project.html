@@ -2,7 +2,7 @@
 
 {% block title %}{{project.name}}{% endblock title %}
 
-{% block card_title %}{{project.name}}#{{project.id}} <span class="text-muted">({{logs|length}} logs)</span>{% endblock card_title %}
+{% block card_title %}{{project.name}}#{{project.id}} <span class="text-muted">({{logs_number}} logs)</span>{% endblock card_title %}
 
 {% block card_menu %}
   <a href="/project/{{project.id}}/export/" class="text-dark text-decoration-none">Export Logs</a> |

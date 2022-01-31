@@ -118,6 +118,7 @@ def project_view(request, project_id):
     logs = Log.objects.filter(
         project=project_id
     ).order_by('-created')
+    logs_number = len(logs)
     paginator = Paginator(logs, 15)
     try:
         page_number = int(request.GET.get('p'))
@@ -130,6 +131,7 @@ def project_view(request, project_id):
     logs = paginator.get_page(page_number)
     context = {
         'logs': logs,
+        'logs_number': logs_number,
         'project': Project.objects.get(
             Q(users__in=[request.user]),
             id=project_id,
