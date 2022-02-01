@@ -1,0 +1,11 @@
+{
+  "name": "AshLog",
+  "description": "Open source logging API",
+  "repository": "https://github.com/ashlog-rest/ashlog",
+  "keywords": [
+    "python",
+    "django",
+    "log",
+    "api"
+  ]
+}
