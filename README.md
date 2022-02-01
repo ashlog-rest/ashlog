@@ -3,6 +3,7 @@
 Open Source API and web app to handle logs with ease.
 
 <a href="https://liberapay.com/AshLog/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ashlog-rest/ashlog)
 
 ## Sample usage
 
