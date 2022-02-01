@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from api.models import Log, Project
 from api.serializers import LogSerializer, ProjectSerializer
+from api.permissions import IsMemberOrReadOnly
 from common.util import (
     send_discord,
     send_post_request,
@@ -19,12 +20,12 @@ class LogView(APIView):
         IsAuthenticated,
     ]
 
-    def get(self, request, project):
-        if project is None:
+    def get(self, request, project_id):
+        if project_id is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         project = Project.objects.get(
             Q(users__in=[request.user]),
-            id=project
+            id=project_id
         )
         if not project:
             return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -69,16 +70,36 @@ class LogView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ProjectViewSet(ModelViewSet):
+class ProjectView(APIView):
     """ Handle creating, updating and deleting projects """
-    serializer_class = ProjectSerializer
     permission_classes = [
         IsAuthenticated,
+        IsMemberOrReadOnly,
     ]
 
-    def get_queryset(self):
-        return Project.objects.filter(
+    def get(self, request, project_id=None):
+        projects = Project.objects.filter(
             Q(
-                users__in=[self.request.user]
+                users__in=[request.user]
             )
         )
+        if project_id is None:
+            serializer = ProjectSerializer(projects, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            project = projects.get(id=project_id)
+            serializer = ProjectSerializer(project)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = ProjectSerializer(
+            data={
+                'name': request.data.get('name'),
+                'users': [request.user],
+            },
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -1,12 +1,9 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from api.views import LogView, ProjectViewSet
-
-router = DefaultRouter()
-router.register('project', ProjectViewSet, basename='projects')
+from api.views import LogView, ProjectView
 
 urlpatterns = [
     path('log/', LogView.as_view()),
-    path('project/<project>/log/', LogView.as_view()),
-    path('', include(router.urls)),
+    path('project/', ProjectView.as_view()),
+    path('project/<int:project_id>/', ProjectView.as_view()),
+    path('project/<int:project_id>/log/', LogView.as_view()),
 ]

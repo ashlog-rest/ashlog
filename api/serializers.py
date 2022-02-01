@@ -14,3 +14,4 @@ class ProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
         fields = ('id', 'name', 'users')
+        extra_kwargs = {'id': {'required': False}}
