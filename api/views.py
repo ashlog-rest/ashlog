@@ -7,6 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 from api.models import Log, Project
 from api.serializers import LogSerializer, ProjectSerializer
 from api.permissions import IsMemberOrReadOnly
+from authentication.models import User
 from common.util import (
     send_discord,
     send_post_request,
