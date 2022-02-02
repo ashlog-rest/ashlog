@@ -3,11 +3,9 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
 from api.models import Log, Project
 from api.serializers import LogSerializer, ProjectSerializer
 from api.permissions import IsMemberOrReadOnly
-from authentication.models import User
 from common.util import (
     send_discord,
     send_post_request,
