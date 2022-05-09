@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from authentication.models import User
 from api.models import Log, Project
 from web.forms import LoginForm, RegisterForm
+import os
 
 
 def delete_log_view(request, log_id=None):
@@ -177,7 +178,7 @@ def login_view(request):
                 if not remember_me:
                     request.session.set_expiry(0)
                 return redirect('/')
-    return render(request, 'pages/login.html')
+    return render(request, 'pages/login.html', {'allow_registration': os.getenv('ALLOW_NEW_USER_REGISTRATION') == 'true'})
 
 
 def logout_view(request):
@@ -203,7 +204,7 @@ def new_project_view(request):
 
 def register_view(request):
     """ View for user registration """
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or os.getenv('ALLOW_NEW_USER_REGISTRATION') == 'false':
         return redirect('/')
     if request.method == 'POST':
         form = RegisterForm(data=request.POST)

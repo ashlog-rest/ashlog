@@ -59,8 +59,9 @@
                 > Remember me
               </label>
             </div>
-
-              <a href="/register">Need an account?</a>
+              {% if allow_registration %}
+                <a href="/register">Need an account?</a>
+              {% endif %}
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
